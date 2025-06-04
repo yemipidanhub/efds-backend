@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, verifyEmail } from '../controllers/auth.controller';
+import { register, verifyEmail, login } from '../controllers/auth.controller';
 import { handleFileUploads, uploadToCloudinary } from '../middleware/upload.middleware';
 import { registerValidation, validate } from '../utils/validation';
 
@@ -13,6 +13,8 @@ router.post(
   validate,
   register
 );
+router.post('/login', login);
+
 router.get('/verify-email/:token', verifyEmail);
 
 export default router;

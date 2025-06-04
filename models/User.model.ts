@@ -50,6 +50,14 @@ export const UserModel = {
     return rows[0];
   },
 
+  async findById(id: number): Promise<User | undefined> {
+    const [rows] = await pool.query<User[]>(
+      `SELECT * FROM users WHERE id = ?`,
+      [id]
+    );
+    return rows[0];
+  },
+
   async verifyEmail(userId: number): Promise<void> {
     await pool.query(
       `UPDATE users SET isVerified = true WHERE id = ?`,

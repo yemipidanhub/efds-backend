@@ -1,6 +1,7 @@
 import express, { NextFunction } from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes';
+import profileRoutes from './routes/user.routes';
 import { authenticate, logResponseBody } from './middleware/auth.middleware';
 
 const app = express();
@@ -33,6 +34,7 @@ app.use((req, res, next) => {
 app.use(logResponseBody);
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/user', profileRoutes);
 
 // Protected route example
 app.get('/api/protected', authenticate, (req, res) => {
